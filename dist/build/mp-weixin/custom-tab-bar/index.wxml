@@ -1,0 +1,8 @@
+<view class="nav-bar">
+  <block wx:for="{{list}}" wx:key="pagePath">
+    <view class="nav-tab {{selected === index ? 'nav-tab-active' : ''}}" data-index="{{index}}" bindtap="switchTab">
+      <text class="nav-icon {{selected === index ? 'nav-icon-active' : ''}}">{{item.icon}}</text>
+      <text class="nav-label {{selected === index ? 'nav-label-active' : ''}}">{{item.text}}</text>
+    </view>
+  </block>
+</view>

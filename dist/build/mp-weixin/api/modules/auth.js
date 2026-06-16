@@ -1,0 +1,1 @@
+"use strict";const e=require("../../utils/request.js"),t={wechatLogin:t=>e.request.post("/auth/wechat-login",{code:t},{skipAuth:!0}),refreshToken:()=>e.request.post("/auth/refresh-token")};exports.authApi=t;

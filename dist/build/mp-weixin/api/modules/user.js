@@ -1,0 +1,1 @@
+"use strict";const e=require("../../utils/request.js"),t={getInfo:()=>e.request.get("/user/info"),updateProfile:t=>e.request.put("/user/profile",t),updateNotification:t=>e.request.put("/user/notification",{enabled:t})};exports.userApi=t;

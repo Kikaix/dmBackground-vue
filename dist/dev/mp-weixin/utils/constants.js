@@ -1,0 +1,18 @@
+"use strict";
+const BASE_URL = "http://172.20.10.5:8080/api";
+const BIZ_CODE = {
+  SUCCESS: 200,
+  UNAUTHORIZED: 401
+};
+const HTTP_STATUS = {
+  400: "请求参数错误",
+  401: "未授权，请重新登录",
+  403: "拒绝访问",
+  404: "请求资源不存在",
+  500: "服务器内部错误",
+  502: "网关错误",
+  503: "服务不可用"
+};
+exports.BASE_URL = BASE_URL;
+exports.BIZ_CODE = BIZ_CODE;
+exports.HTTP_STATUS = HTTP_STATUS;

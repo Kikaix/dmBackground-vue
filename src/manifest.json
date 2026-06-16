@@ -1,0 +1,27 @@
+{
+  "name": "宿舍管理系统",
+  "appid": "",
+  "description": "宿舍管理系统微信小程序",
+  "versionName": "1.0.0",
+  "versionCode": "100",
+  "transformPx": false,
+  "mp-weixin": {
+    "appid": "wx5ac895cafbc18ebe",
+    "setting": {
+      "urlCheck": false,
+      "es6": true,
+      "postcss": true,
+      "minified": true
+    },
+    "usingComponents": true,
+    "permission": {
+      "scope.userLocation": {
+        "desc": "用于获取您当前位置的天气信息"
+      }
+    },
+    "requiredPrivateInfos": ["getLocation"]
+  },
+  "uniStatistics": {
+    "enable": false
+  }
+}
