@@ -1,7 +1,7 @@
 {
   "name": "dormitory-management",
   "version": "1.0.0",
-  "description": "宿舍管理系统 - 微信小程序",
+  "description": "省心排班小助手 - 微信小程序",
   "scripts": {
     "dev:mp-weixin": "uni -p mp-weixin",
     "build:mp-weixin": "uni build -p mp-weixin",

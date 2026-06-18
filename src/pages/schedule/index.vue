@@ -131,7 +131,7 @@
               <!-- Rest day (weekend or holiday) -->
               <view class="day-person" v-else-if="day.isRest">
                 <text class="weekend-badge">休息日</text>
-                <text class="weekend-text">无需值日</text>
+                <text class="weekend-text">无需值班</text>
               </view>
               <!-- Future: cleanable -->
               <view class="day-person" v-else-if="day.person">
@@ -151,7 +151,7 @@
                 </view>
                 <view class="person-info">
                   <text class="person-name wait-name">待排班</text>
-                  <text class="person-tag wait-tag">未分配值日生</text>
+                  <text class="person-tag wait-tag">未分配值班人员</text>
                 </view>
               </view>
             </view>

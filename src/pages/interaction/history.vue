@@ -5,7 +5,7 @@
       <view class="back-btn" @click="goBack">
         <text class="back-icon">←</text>
       </view>
-      <text class="bar-title">值日历史记录</text>
+      <text class="bar-title">值班历史记录</text>
       <view class="spacer"></view>
     </view>
 
@@ -78,18 +78,18 @@
     <!-- Edit Bottom Sheet -->
     <view class="edit-sheet" :class="{ visible: showSheet }">
       <view class="sheet-handle"></view>
-      <text class="sheet-title">修改值日记录</text>
+      <text class="sheet-title">修改值班记录</text>
 
       <!-- Info summary -->
       <view class="sheet-info" v-if="editingItem">
         <text class="sheet-date">{{ editingItem.scheduleDate }}</text>
-        <text class="sheet-task">{{ editingItem.nickname }} · {{ editingItem.timeSlot || '值日' }}</text>
+        <text class="sheet-task">{{ editingItem.nickname }} · {{ editingItem.timeSlot || '值班' }}</text>
         <view class="sheet-badge">历史记录</view>
       </view>
 
       <!-- Status change -->
       <view class="sheet-section">
-        <text class="sheet-label">调整值日状态</text>
+        <text class="sheet-label">调整值班状态</text>
         <view class="status-options">
           <view
             class="status-option"

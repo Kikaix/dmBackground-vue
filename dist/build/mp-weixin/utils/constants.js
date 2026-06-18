@@ -1,1 +1,1 @@
-"use strict";exports.BASE_URL="http://192.168.137.9:8080/api",exports.BIZ_CODE={SUCCESS:200,UNAUTHORIZED:401},exports.HTTP_STATUS={400:"请求参数错误",401:"未授权，请重新登录",403:"拒绝访问",404:"请求资源不存在",500:"服务器内部错误",502:"网关错误",503:"服务不可用"};
+"use strict";exports.BASE_URL="https://springboot-1y6r-270784-5-1443650889.sh.run.tcloudbase.com/api",exports.BIZ_CODE={SUCCESS:200,UNAUTHORIZED:401},exports.HTTP_STATUS={400:"请求参数错误",401:"未授权，请重新登录",403:"拒绝访问",404:"请求资源不存在",500:"服务器内部错误",502:"网关错误",503:"服务不可用"},exports.PAGE_PATH={DORMITORY_LIST:"/pages/dormitory/list"};

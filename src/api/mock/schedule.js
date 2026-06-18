@@ -13,7 +13,7 @@ const scheduleOrders = [
 
 const today = new Date().toISOString().split('T')[0]
 const schedules = [
-  { id: 1, dormitoryId: 1, userId: 1, nickname: '阿强', avatarUrl: '', scheduleDate: today, timeSlot: '上午', remark: '今天值日', imageUrl: null, status: 'PENDING', createdAt: today + ' 08:00:00' },
+  { id: 1, dormitoryId: 1, userId: 1, nickname: '阿强', avatarUrl: '', scheduleDate: today, timeSlot: '上午', remark: '今天值班', imageUrl: null, status: 'PENDING', createdAt: today + ' 08:00:00' },
   { id: 2, dormitoryId: 1, userId: 2, nickname: '小美', avatarUrl: '', scheduleDate: today, timeSlot: '', remark: '', imageUrl: null, status: 'COMPLETED', createdAt: today + ' 09:00:00' }
 ]
 

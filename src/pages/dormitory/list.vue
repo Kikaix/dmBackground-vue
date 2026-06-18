@@ -98,6 +98,7 @@
 
 <script setup>
 import { ref, computed, onMounted } from 'vue'
+import { onLoad } from '@dcloudio/uni-app'
 import { dormitoryApi } from '@/api/modules/dormitory'
 import { useUserStore } from '@/store/useUserStore'
 
@@ -164,11 +165,46 @@ async function joinDorm() {
   })
 }
 
+function handleInviteJoin(code) {
+  const trimmed = (code || '').trim()
+  if (!trimmed) return
+  uni.showModal({
+    title: '加入团队',
+    content: `您收到一个团队邀请，邀请码：${trimmed}`,
+    confirmText: '立即加入',
+    success: async (res) => {
+      if (res.confirm) {
+        try {
+          await dormitoryApi.join(trimmed)
+          uni.showToast({ title: '加入成功', icon: 'success' })
+          await Promise.all([fetchList(), userStore.fetchUserInfo()])
+        } catch (err) {
+          uni.showToast({ title: err?.message || '加入失败', icon: 'none' })
+        }
+      }
+    }
+  })
+}
+
+let pendingInviteCode = null
+
+onLoad((options) => {
+  if (options?.inviteCode) {
+    pendingInviteCode = options.inviteCode
+  }
+})
+
 onMounted(async () => {
   if (!userStore.userInfo?.activeDormitoryId) {
     await userStore.fetchUserInfo()
   }
   fetchList()
+
+  const code = pendingInviteCode || uni.getStorageSync('_pendingInviteCode')
+  if (code) {
+    uni.removeStorageSync('_pendingInviteCode')
+    handleInviteJoin(code)
+  }
 })
 </script>
 

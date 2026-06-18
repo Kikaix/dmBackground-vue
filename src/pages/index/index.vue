@@ -4,7 +4,7 @@
       <!-- Welcome Section -->
       <view class="welcome-card">
         <text class="welcome-greeting">{{ greetingText }}</text>
-        <text class="welcome-status" v-if="dormName">「{{ dormName }}」当前处于"值日"状态。</text>
+        <text class="welcome-status" v-if="dormName">「{{ dormName }}」当前处于"值班"状态。</text>
       </view>
 
       <!-- Quick Actions -->
@@ -29,29 +29,29 @@
         </view>
       </view>
 
-      <!-- Announcement Board -->
+      <!-- Duty Notice -->
       <view class="section-block">
         <view class="section-header">
-          <text class="section-title">公告栏</text>
+          <text class="section-title">值班公告</text>
           <text class="section-link" @click="handleSeeAll">查看全部</text>
         </view>
         <view class="announce-card">
           <view class="announce-tag">
-            <text class="tag-icon">📢</text>
+            <text class="tag-icon">📋</text>
           </view>
           <view class="announce-content">
             <view class="announce-top">
-              <text class="announce-title">宿舍维修</text>
-              <text class="announce-time">2小时前</text>
+              <text class="announce-title">本周值班安排</text>
+              <text class="announce-time">刚刚更新</text>
             </view>
-            <text class="announce-desc">明天（周五）将暂时停水，时间为下午 2:00 至 4:00，进行管道升级。请提前储备足够的用水。</text>
+            <text class="announce-desc">本周值班表已发布，请各寝室成员及时查看自己的值班时间段，按时完成宿舍公共区域清洁及垃圾清理任务。</text>
           </view>
         </view>
       </view>
 
       <!-- Today's Duty -->
       <view class="section-block">
-        <text class="section-title">今日值日</text>
+        <text class="section-title">今日值班</text>
         <view class="duty-card" @click="handleDutyDetail">
           <view class="duty-left">
             <view class="duty-avatar-area">
@@ -65,7 +65,7 @@
             </view>
             <view class="duty-info">
               <text class="duty-name">{{ todayDuty ? todayDuty.nickname : '未安排' }}</text>
-              <text class="duty-area">{{ todayDuty ? (todayDuty.timeSlot || '值日') : '暂无今日值日安排' }}</text>
+              <text class="duty-area">{{ todayDuty ? (todayDuty.timeSlot || '值班') : '暂无今日值班安排' }}</text>
             </view>
           </view>
           <view class="duty-right">
@@ -80,10 +80,10 @@
       <!-- Featured Cards -->
       <view class="featured-grid">
         <view class="feat-card feat-main">
-          <text class="feat-main-icon">🌱</text>
+          <text class="feat-main-icon">⭐</text>
           <view class="feat-main-text">
-            <text class="feat-main-title">环保达人</text>
-            <text class="feat-main-sub">402寝室节电排名前10%！</text>
+            <text class="feat-main-title">值班之星</text>
+            <text class="feat-main-sub">402寝室本月值班完成率100%！</text>
           </view>
         </view>
         <view class="feat-right">
@@ -210,7 +210,7 @@ function handleAction(type) {
 }
 
 function handleSeeAll() {
-  uni.showToast({ title: '查看全部公告（开发中）', icon: 'none' })
+  uni.navigateTo({ url: '/pages/interaction/history' })
 }
 
 async function fetchTodayDuty() {

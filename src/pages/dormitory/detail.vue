@@ -43,7 +43,7 @@
                 <text class="stat-icon">🧹</text>
               </view>
               <view class="stat-info">
-                <text class="stat-label">今日值日</text>
+                <text class="stat-label">今日值班</text>
                 <text class="stat-value purple">王五</text>
               </view>
             </view>
@@ -84,7 +84,7 @@
           <view class="invite-icon-wrap">
             <text class="invite-icon">👥</text>
           </view>
-          <text class="invite-heading">还没有邀请齐室友？</text>
+          <text class="invite-heading">还没有邀请齐成员？</text>
           <text class="invite-desc">分享团队代码，让大家快速加入你的团队</text>
           <view class="code-row">
             <text class="code-text">{{ dormitory.invitationCode || '---' }}</text>
@@ -95,10 +95,18 @@
               <text class="copy-icon">🔄</text>
             </view>
           </view>
+          <!-- #ifdef MP-WEIXIN -->
+          <button class="share-btn" open-type="share">
+            <text class="share-icon">📤</text>
+            <text class="share-text">邀请团队好友</text>
+          </button>
+          <!-- #endif -->
+          <!-- #ifndef MP-WEIXIN -->
           <view class="share-btn" @click="inviteFriend">
             <text class="share-icon">📤</text>
-            <text class="share-text">邀请微信室友</text>
+            <text class="share-text">邀请团队好友</text>
           </view>
+          <!-- #endif -->
         </view>
       </view>
 
@@ -126,8 +134,9 @@
 
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
-import { onLoad } from '@dcloudio/uni-app'
+import { onLoad, onShareAppMessage } from '@dcloudio/uni-app'
 import { dormitoryApi } from '@/api/modules/dormitory'
+import { PAGE_PATH } from '@/utils/constants'
 
 const dormitory = ref({})
 const members = ref([])
@@ -230,7 +239,7 @@ function handleMore() {
 }
 
 function handleSwitch() {
-  uni.navigateTo({ url: '/pages/dormitory/list' })
+  uni.navigateTo({ url: PAGE_PATH.DORMITORY_LIST })
 }
 
 function handleMember(m) {
@@ -270,7 +279,27 @@ async function refreshCode() {
 }
 
 function inviteFriend() {
-  uni.showToast({ title: '分享功能（开发中）', icon: 'none' })
+  const code = dormitory.value.invitationCode || ''
+  // #ifdef MP-WEIXIN
+  uni.setClipboardData({
+    data: code,
+    success: () => uni.showToast({ title: '邀请码已复制，请发送给好友', icon: 'success' })
+  })
+  // #endif
+  // #ifndef MP-WEIXIN
+  const name = dormitory.value.name || '团队'
+  if (typeof navigator !== 'undefined' && navigator.share) {
+    navigator.share({
+      title: `加入「${name}」团队`,
+      text: `邀请你加入「${name}」团队，邀请码：${code}`
+    }).catch(() => {})
+  } else {
+    uni.setClipboardData({
+      data: code,
+      success: () => uni.showToast({ title: '邀请码已复制，请发送给好友', icon: 'success' })
+    })
+  }
+  // #endif
 }
 
 function handleAction(type) {
@@ -297,6 +326,15 @@ onMounted(() => {
 
 onUnmounted(() => {
   if (refreshTimer) clearInterval(refreshTimer)
+})
+
+// 微信小程序分享：点击按钮 → 弹出分享面板 → 发送小程序卡片给好友
+onShareAppMessage(() => {
+  return {
+    title: `邀请你加入「${dormitory.value.name || '团队'}」`,
+    path: `${PAGE_PATH.DORMITORY_LIST}?inviteCode=${dormitory.value.invitationCode || ''}`,
+    imageUrl: '/static/tabbar/xct.png',
+  }
 })
 </script>
 
@@ -514,7 +552,11 @@ onUnmounted(() => {
   background: linear-gradient(90deg, #07c160, #45e17c);
   border-radius: 22px;
   box-shadow: 0 3px 12px rgba(7,193,96,0.2);
+  border: none;
+  font-size: inherit;
+  line-height: inherit;
   &:active { transform: scale(0.95); }
+  &::after { border: none; }
 }
 
 .share-icon { font-size: 14px; }

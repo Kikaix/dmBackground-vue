@@ -5,8 +5,8 @@
         <view class="welcome-card">
           <view class="welcome-text">
             <text class="welcome-label">Harmony Dashboard</text>
-            <text class="welcome-title">你好，值日生</text>
-            <text class="welcome-desc">保持环境整洁，享受和谐生活。</text>
+            <text class="welcome-title">你好，值班人员</text>
+            <text class="welcome-desc">合理分配班次，高效管理团队。</text>
           </view>
           <view class="welcome-decor">
             <text class="welcome-decor-icon">✨</text>
@@ -22,7 +22,7 @@
         <!-- Weekly Duty Cards -->
         <view class="section">
           <view class="section-top">
-            <text class="section-title">本周值日表</text>
+            <text class="section-title">本周值班表</text>
             <text class="section-link" @click="handleHistory">查看全部 ›</text>
           </view>
           <scroll-view scroll-x class="week-scroll" :show-scrollbar="false">
@@ -85,7 +85,7 @@
               <text class="action-icon-text">📋</text>
             </view>
             <view class="action-card-info">
-              <text class="action-card-title">值日历史</text>
+              <text class="action-card-title">值班历史</text>
               <text class="action-card-desc">查看往期记录</text>
             </view>
           </view>
@@ -187,7 +187,7 @@ async function loadSchedules() {
   } catch (err) { /* ignore */ }
 }
 
-// 监听排班变更事件，刷新本周值日表
+// 监听排班变更事件，刷新本周值班表
 uni.$on('dutyChanged', loadSchedules)
 
 function handleHistory() {

@@ -8,7 +8,7 @@ export const BASE_URL = '/api'
 // #endif
 
 // #ifdef MP-WEIXIN
-export const BASE_URL = 'http://192.168.137.9:8080/api'
+export const BASE_URL = 'https://springboot-1y6r-270784-5-1443650889.sh.run.tcloudbase.com/api'
 // #endif
 
 // 业务状态码（与 Java 后端约定）
@@ -62,4 +62,9 @@ export const PAGE_CONFIG = {
   page: 1,
   size: 10,
   sizes: [10, 20, 50]
+}
+
+// 小程序页面路径（统一管理，避免硬编码）
+export const PAGE_PATH = {
+  DORMITORY_LIST: '/pages/dormitory/list',
 }
